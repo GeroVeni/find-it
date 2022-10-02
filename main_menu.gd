@@ -1,5 +1,8 @@
 extends Control
 
+func _ready():
+	Audio.get_node("AudioStreamPlayer").play()
+
 func _on_quit_button_pressed():
 	get_tree().quit()
 
