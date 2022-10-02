@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="ldjam52"
+run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+ItemManager="*res://item_manager.gd"
+SceneManager="*res://scene_manager.gd"
+
+[display]
+
+window/size/resizable=false
 
 [rendering]
 

@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://ywacivsxqynd"]
+
+[ext_resource type="Script" path="res://memorise_scene.gd" id="1_qdumk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tf6qi"]
+size = Vector2(1137, 535)
+
+[node name="MemoriseScene" type="Node2D"]
+script = ExtResource("1_qdumk")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="SpawnArea" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(576.5, 329.5)
+shape = SubResource("RectangleShape2D_tf6qi")
+
+[node name="Cards" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MemorisingTimeLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 9.0
+offset_right = 125.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "10s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownTimeLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 296.0
+offset_right = 125.0
+offset_bottom = 368.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "10s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownDescLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -242.5
+offset_top = 198.0
+offset_right = 242.5
+offset_bottom = 270.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Memorise the items"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -242.5
+offset_top = 107.0
+offset_right = 242.5
+offset_bottom = 179.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 1

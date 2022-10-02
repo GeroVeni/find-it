@@ -1,0 +1,181 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4x1ms6brox78"]
+
+[ext_resource type="Script" path="res://finding_scene.gd" id="1_u1yai"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3bn4"]
+size = Vector2(1137, 514.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktolg"]
+bg_color = Color(0, 0, 0, 0.478431)
+
+[sub_resource type="LabelSettings" id="LabelSettings_npuvj"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_0h4ud"]
+font_size = 30
+
+[node name="FindingScene" type="Node2D"]
+script = ExtResource("1_u1yai")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="Cards" type="Node2D" parent="."]
+
+[node name="SpawnArea" type="Area2D" parent="."]
+visible = false
+
+[node name="Shape" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(576.5, 318.25)
+shape = SubResource("RectangleShape2D_i3bn4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -63.0
+offset_right = 200.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Type anything to filter..."
+alignment = 1
+selecting_enabled = false
+
+[node name="MemorisingTimeLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 9.0
+offset_right = 125.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "10s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownTimeLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 296.0
+offset_right = 125.0
+offset_bottom = 368.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "10s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownDescLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -364.0
+offset_top = 198.0
+offset_right = 364.0
+offset_bottom = 270.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Find the items you just saw"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Results" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Results"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -413.0
+offset_top = -208.0
+offset_right = 413.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ktolg")
+
+[node name="ResultLabel" type="Label" parent="CanvasLayer/Results/Panel"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -166.0
+offset_top = 22.0
+offset_right = 166.0
+offset_bottom = 94.0
+grow_horizontal = 2
+text = "Game over"
+label_settings = SubResource("LabelSettings_npuvj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DetailsLabel" type="Label" parent="CanvasLayer/Results/Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.0
+offset_top = -69.0
+offset_right = 203.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You found 8 / 10"
+label_settings = SubResource("LabelSettings_0h4ud")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextButton" type="Button" parent="CanvasLayer/Results/Panel"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -141.0
+offset_right = 180.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/Results/Panel"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -75.0
+offset_right = 180.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
+
+[connection signal="pressed" from="CanvasLayer/Results/Panel/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Results/Panel/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

@@ -5,6 +5,7 @@ extends Node2D
 signal card_entered
 signal card_exited
 
+@onready var card_mesh: MultiMeshInstance2D = $CardMesh
 @onready var rect1 : MeshInstance2D = $CardMesh/Rect1 # horizontal
 @onready var rect2 : MeshInstance2D = $CardMesh/Rect2 # vertical
 @onready var circle1 : MeshInstance2D = $CardMesh/Circle1 # top left
@@ -12,6 +13,7 @@ signal card_exited
 @onready var circle3 : MeshInstance2D = $CardMesh/Circle3 # bot right
 @onready var circle4 : MeshInstance2D = $CardMesh/Circle4 # bot left
 @onready var click_area = $ClickArea
+@onready var sprite : Sprite2D = $Sprite
 @onready var label : Label = $Label
 
 const LABEL_PADDING : = 10.0
@@ -48,6 +50,7 @@ func size() -> Vector2:
 
 func set_item(item_id):
 	label.text = item_id
+	sprite.texture = load("res://card_images/ldjam52/" + item_id + ".PNG")
 
 func update_card_dimensions():
 	if !rect1:
@@ -74,7 +77,7 @@ func _on_card_exited():
 const SATURATION = 0.6
 const LIGHTNESS = 0.5
 const HIGHLIGHT_SATURATION = 0.6
-const HIGHLIGHT_LIGHTNESS = 0.7
+const HIGHLIGHT_LIGHTNESS = 0.9
 const DISABLED_SATURATION = 0.6
 const DISABLED_LIGHTNESS = 0.2
 
@@ -99,12 +102,14 @@ var _disabled: bool
 		update_color()
 
 func update_color():
+	if !card_mesh:
+		return
 	if disabled:
-		modulate = Color.from_ok_hsl(hue, DISABLED_SATURATION, DISABLED_LIGHTNESS)
+		card_mesh.modulate = Color.from_ok_hsl(hue, DISABLED_SATURATION, DISABLED_LIGHTNESS)
 	elif highlight:
-		modulate = Color.from_ok_hsl(hue, HIGHLIGHT_SATURATION, HIGHLIGHT_LIGHTNESS)
+		card_mesh.modulate = Color.from_ok_hsl(hue, HIGHLIGHT_SATURATION, HIGHLIGHT_LIGHTNESS)
 	else:
-		modulate = Color.from_ok_hsl(hue, SATURATION, LIGHTNESS)
+		card_mesh.modulate = Color.from_ok_hsl(hue, SATURATION, LIGHTNESS)
 
 func _ready():
 	click_area.mouse_entered.connect(_on_card_entered)
