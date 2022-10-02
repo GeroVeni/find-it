@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3157r0sw83d0"]
+
+[ext_resource type="Script" path="res://card.gd" id="1_lc3ds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xx4eu"]
+size = Vector2(150, 150)
+
+[sub_resource type="MultiMesh" id="MultiMesh_2m1ib"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sx8mx"]
+size = Vector3(150, 120, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lxw2w"]
+size = Vector3(120, 150, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_y7mr0"]
+radius = 15.0
+height = 30.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_r5t83"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="Card" type="Node2D"]
+modulate = Color(0.532848, 0.462208, 0.221226, 1)
+script = ExtResource("1_lc3ds")
+card_width = 150.0
+card_height = 150.0
+rounded_radius = 15.0
+highlight = false
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="ClickArea"]
+shape = SubResource("RectangleShape2D_xx4eu")
+
+[node name="CardMesh" type="MultiMeshInstance2D" parent="."]
+multimesh = SubResource("MultiMesh_2m1ib")
+
+[node name="Rect1" type="MeshInstance2D" parent="CardMesh"]
+mesh = SubResource("BoxMesh_sx8mx")
+
+[node name="Rect2" type="MeshInstance2D" parent="CardMesh"]
+mesh = SubResource("BoxMesh_lxw2w")
+
+[node name="Circle1" type="MeshInstance2D" parent="CardMesh"]
+position = Vector2(-60, 60)
+mesh = SubResource("SphereMesh_y7mr0")
+
+[node name="Circle2" type="MeshInstance2D" parent="CardMesh"]
+position = Vector2(60, 60)
+mesh = SubResource("SphereMesh_y7mr0")
+
+[node name="Circle3" type="MeshInstance2D" parent="CardMesh"]
+position = Vector2(60, -60)
+mesh = SubResource("SphereMesh_y7mr0")
+
+[node name="Circle4" type="MeshInstance2D" parent="CardMesh"]
+position = Vector2(-60, -60)
+mesh = SubResource("SphereMesh_y7mr0")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = 34.0
+offset_right = 103.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "empty"
+label_settings = SubResource("LabelSettings_r5t83")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3

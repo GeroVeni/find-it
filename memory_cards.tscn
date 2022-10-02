@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdsmban6i3lij"]
+
+[ext_resource type="Script" path="res://memory_cards.gd" id="1_81ogm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tvqs6"]
+font_size = 20
+
+[node name="Node2d" type="Node2D"]
+script = ExtResource("1_81ogm")
+
+[node name="memorize_view" type="Node2D" parent="."]
+
+[node name="finding_view" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -55.0
+offset_right = 168.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_tvqs6")
+horizontal_alignment = 1
+vertical_alignment = 1
